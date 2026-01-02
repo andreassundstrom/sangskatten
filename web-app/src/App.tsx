@@ -6,7 +6,12 @@ import { createTheme, CssBaseline } from '@mui/material'
 
 
 export default function App() {
-  const theme = createTheme()
+  const theme = createTheme({
+    palette:{
+      primary: {main:'#2D3C59'},
+      secondary: {main:'#94A378'}
+    }
+  })
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
