@@ -20,7 +20,7 @@ COPY --from=app-builder /build/dist src/Sangskatten.Api/wwwroot
 
 RUN dotnet publish src/Sangskatten.Api -c Release -o bin/
 
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 
 WORKDIR /app
 
