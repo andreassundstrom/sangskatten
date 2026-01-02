@@ -1,13 +1,18 @@
-import { Instrument, OpenSheetMusicDisplay } from "opensheetmusicdisplay"
+import { OpenSheetMusicDisplay } from "opensheetmusicdisplay"
 import { useRef, useState, useEffect } from "react"
-import { useParams } from "react-router"
+import { Link, useParams } from "react-router"
 import { GetSheetMusicById } from "../httpClient"
+import { Box, Card, CardContent } from "@mui/material"
 
 export const SheetMusicPage = () => {
-    return <>
-        <a href="/">Back</a>
-        {<ScoreRenderer />}
-    </>
+    return <Box>
+        <Card>
+          <CardContent>
+            <Link to="/">Back</Link>
+            <ScoreRenderer />
+          </CardContent>
+        </Card>
+    </Box>
 }
 
 const ScoreRenderer = ({} :{}) => {
