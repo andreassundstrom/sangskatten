@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.StaticFiles;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
@@ -6,8 +8,17 @@ builder.Services.AddSpaStaticFiles(config =>
 {
     if (builder.Environment.IsDevelopment())
     {
-        config.RootPath = "web-app";
+        config.RootPath = "wwwroot/web-app";
     }
+});
+
+var fileExtensionMapper = new FileExtensionContentTypeProvider();
+
+fileExtensionMapper.Mappings[".musicxml"] = "application/xml";
+
+builder.Services.Configure<StaticFileOptions>(options =>
+{
+    options.ContentTypeProvider = fileExtensionMapper;
 });
 
 var app = builder.Build();
@@ -21,7 +32,7 @@ app.UseSpa(spa =>
 {
     if (builder.Environment.IsDevelopment())
     {
-        spa.Options.SourcePath = "web-app";
+        spa.Options.SourcePath = "wwwroot/web-app";
         spa.UseProxyToSpaDevelopmentServer("http://localhost:5173");
     }
 });

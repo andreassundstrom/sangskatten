@@ -2,12 +2,12 @@ import { MainLayout } from './layout/MainLayout.tsx';
 import { Home } from './pages/Home.tsx'
 
 import { createBrowserRouter } from "react-router";
-import { SheetMusicPage } from './pages/SheetMusic.tsx';
-import type { SheetMusic } from './types/SheetMusic.ts';
+import { ScorePage } from './pages/ScorePage.tsx';
+import type { Score } from './types/Score.ts';
 
 
-const getSheetMusic = async () : Promise<SheetMusic[]> => {
-    return fetch('/api/v1/sheet-music').then(res => res.json())
+const getSheetMusic = async () : Promise<Score[]> => {
+    return fetch('/scores/index.json').then(res => res.json())
 }
 
 export const router = createBrowserRouter([{
@@ -16,8 +16,8 @@ export const router = createBrowserRouter([{
     children:[
         {index:true, Component: Home, loader: async () => {
             var data = await getSheetMusic();
-            return { sheetMusic: data }
+            return { scores: data }
         }},
-        { path: '/sheet-music/:id', Component: SheetMusicPage }
+        { path: '/scores/:id', Component: ScorePage }
     ]
 }])
