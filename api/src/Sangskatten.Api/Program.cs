@@ -6,10 +6,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddSpaStaticFiles(config =>
 {
-    if (builder.Environment.IsDevelopment())
-    {
-        config.RootPath = "wwwroot/web-app";
-    }
+    config.RootPath = "wwwroot/web-app";
 });
 
 var fileExtensionMapper = new FileExtensionContentTypeProvider();
@@ -24,15 +21,18 @@ builder.Services.Configure<StaticFileOptions>(options =>
 var app = builder.Build();
 
 app.UseRouting();
-app.MapStaticAssets();
+
+app.UseDefaultFiles("/web-app/index.html");
+app.UseStaticFiles();
+app.UseSpaStaticFiles();
 
 app.MapControllers();
 app.UseEndpoints(end => end.MapControllers());
 app.UseSpa(spa =>
 {
+    spa.Options.SourcePath = "wwwroot/web-app";
     if (builder.Environment.IsDevelopment())
     {
-        spa.Options.SourcePath = "wwwroot/web-app";
         spa.UseProxyToSpaDevelopmentServer("http://localhost:5173");
     }
 });

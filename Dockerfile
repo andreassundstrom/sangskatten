@@ -3,7 +3,7 @@ FROM docker.io/node:25-alpine AS app-builder
 
 WORKDIR /build
 
-COPY web-app/ .
+COPY api/src/Sangskatten.Api/web-app/ .
 
 RUN npm ci
 
@@ -16,7 +16,7 @@ WORKDIR /build
 
 COPY api/ .
 
-COPY --from=app-builder /build/dist src/Sangskatten.Api/wwwroot
+COPY --from=app-builder /build/dist src/Sangskatten.Api/wwwroot/web-app
 
 RUN dotnet publish src/Sangskatten.Api -c Release -o bin/
 
