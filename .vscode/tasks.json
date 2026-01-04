@@ -4,8 +4,19 @@
 		{
 			"type": "npm",
 			"script": "dev",
-			"path": "web-app",
-			"problemMatcher": [],
+			"path": "/api/src/Sangskatten.Api/web-app",
+			"problemMatcher": {
+
+				"owner":"vite",
+				"pattern":{
+					"regexp": ".*"
+				},
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern":"VITE v",
+					"endsPattern":"ready"
+				}
+			},
 			"label": "npm: dev - web-app",
 			"detail": "vite",
 			"isBackground": true,

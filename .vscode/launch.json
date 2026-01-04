@@ -9,6 +9,8 @@
             "type": "dotnet",
             "request": "launch",
             "projectPath": "${workspaceFolder}/api/src/Sangskatten.Api/Sangskatten.Api.csproj",
+            "preLaunchTask": "npm: dev - web-app",
+            "postDebugTask": "npm: stop - api/src/Sangskatten.Api/web-app"
         }
     ]
 }
